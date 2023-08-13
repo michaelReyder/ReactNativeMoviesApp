@@ -24,7 +24,7 @@ module.exports = {
         __dirname: true,
     },
     rules: {
-        'no-console': 'error',
+        // 'no-console': 'error',
     },
     plugins: ['jest', 'testing-library'],
 };

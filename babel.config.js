@@ -7,13 +7,19 @@ module.exports = function (api) {
                 'module-resolver',
                 {
                     root: ['./src'],
+                    extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
                     alias: {
-                        src: './src',
-                        components: './src/components',
                         assets: './assets',
+                        '@api': './src/api',
+                        '@components': './src/components',
+                        '@screens': './src/screens',
+                        '@types': './src/types',
+                        '@utils': './src/utils',
                     },
                 },
             ],
+            'nativewind/babel',
+            'transform-inline-environment-variables',
         ],
     };
 };
