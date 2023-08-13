@@ -13,12 +13,14 @@ const TrailerButton = ({ trailerUrl, idx }: { trailerUrl: string; idx: number })
     const handleToggleOpen = () => setOpen(!open);
 
     return (
-        <View className="flex flex-row w-full p-6">
-            <Pressable className="flex flex-row w-full items-center" onPress={handleToggleOpen}>
-                <Ionicons name="ios-play-circle-outline" size={24} color="black" />
-                <Text className="font-semibold ml-3 text-base">Trailer {idx}</Text>
-                <TrailerPlayer trailerUrl={trailerUrl} isOpen={open} close={() => setOpen(false)} />
-            </Pressable>
+        <View className="flex flex-col justify-center items-center">
+            <View className="flex flex-row w-full p-6">
+                <Pressable className="flex flex-row w-full items-center" onPress={handleToggleOpen}>
+                    <Ionicons name="ios-play-circle-outline" size={24} color="black" />
+                    <Text className="font-semibold ml-3 text-base">Trailer {idx}</Text>
+                </Pressable>
+            </View>
+            <TrailerPlayer trailerUrl={trailerUrl} isOpen={open} close={() => setOpen(false)} />
         </View>
     );
 };
@@ -49,7 +51,6 @@ export default function MovieDetailsScreen({ route }: DetailsScreenProps) {
         (async () => {
             const response = await fetchMovieDetails(params.movieId);
             const results = normalizeMovieDetailsData(response);
-            console.log('results: ', results);
             setDetails(results);
         })();
     }, []);

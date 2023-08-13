@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Button, View, Alert, Modal, Pressable, Text, Platform } from 'react-native';
+import { Button, View, Alert, Modal } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 export default function TrailerPlayer({
@@ -24,24 +24,25 @@ export default function TrailerPlayer({
         setPlaying((prev) => !prev);
     }, []);
 
+    const handleClose = () => {
+        togglePlaying();
+        close();
+    };
+
     return (
-        <Modal animationType="slide" transparent={true} visible={isOpen}>
-            {/* <YoutubePlayer
-                height={300}
-                play={playing}
-                videoId={trailerUrl}
-                onChangeState={onStateChange}
-                webViewStyle={{ opacity: 0.99 }}
-                webViewProps={{
-                    renderToHardwareTextureAndroid: true,
-                    androidLayerType:
-                        Platform.OS === 'android' && Platform.Version <= 22 ? 'hardware' : 'none',
-                }}
-            /> */}
-            <Button title={playing ? 'pause' : 'play'} onPress={togglePlaying} />
-            <Pressable onPress={close}>
-                <Text>Close</Text>
-            </Pressable>
+        <Modal animationType="slide" visible={isOpen}>
+            <View className="mt-48 bg-white">
+                <YoutubePlayer
+                    height={300}
+                    play={playing}
+                    videoId={trailerUrl}
+                    onChangeState={onStateChange}
+                />
+                <View className="flex flex-row justify-center items-center">
+                    <Button title={playing ? 'Pause' : 'Play'} onPress={togglePlaying} />
+                    <Button title="Close" onPress={handleClose} />
+                </View>
+            </View>
         </Modal>
     );
 }
