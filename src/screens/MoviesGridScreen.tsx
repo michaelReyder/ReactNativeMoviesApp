@@ -16,12 +16,15 @@ export default function MoviesGridScreen({ navigation }: PopMoviesScreenProps) {
     );
 
     React.useEffect(() => {
-        (async () => {
-            const response = await fetchMovies(MovieLists.POPULAR);
-            const results = normalizeMovieListData(response.results);
-            setMovies(results);
-            // setPage(response.page);
-        })();
+        // Avoid duplicate fetches whenever the component re-renders by checking if the movies array is empty
+        if (movies.length === 0) {
+            (async () => {
+                const response = await fetchMovies(MovieLists.POPULAR);
+                const results = normalizeMovieListData(response.results);
+                setMovies(results);
+                // setPage(response.page);
+            })();
+        }
     }, []);
 
     return (
