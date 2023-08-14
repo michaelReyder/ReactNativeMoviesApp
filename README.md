@@ -26,6 +26,10 @@
 
 <h3 align="center">TMDB React Native App</h3>
 
+![screen1](./assets/pop_movies.png)
+![screen2](./assets/movie_details.png)
+![screen3](./assets/trailer.png)
+
   <p align="center">
     React Native application for interfacing with the TMDB Api to display most popular movies and movie details.
   </p>
